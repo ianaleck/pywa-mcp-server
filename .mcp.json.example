@@ -1,0 +1,20 @@
+{
+  "mcpServers": {
+    "pywa": {
+      "type": "stdio",
+      "command": "uvx",
+      "args": [
+        "--from",
+        "git+https://github.com/ianaleck/pywa-mcp-server",
+        "pywa-mcp-server"
+      ],
+      "env": {
+        "WHATSAPP_PHONE_ID": "<your-phone-number-id>",
+        "WHATSAPP_TOKEN": "<your-system-user-or-app-access-token>",
+        "WHATSAPP_WABA_ID": "<your-waba-id>",
+        "WHATSAPP_APP_ID": "<your-meta-app-id>",
+        "WHATSAPP_APP_SECRET": "<your-meta-app-secret>"
+      }
+    }
+  }
+}
