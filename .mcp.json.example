@@ -5,7 +5,7 @@
       "command": "uvx",
       "args": [
         "--from",
-        "git+https://github.com/ianaleck/pywa-mcp-server",
+        "pywa-mcp-server",
         "pywa-mcp-server"
       ],
       "env": {

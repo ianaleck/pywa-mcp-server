@@ -42,7 +42,7 @@ From the [Meta Business dashboard](https://business.facebook.com/):
 
 #### Option A — `claude mcp add` (recommended, zero-install)
 
-Runs the server directly from git via `uvx` — no clone required.
+Runs the server directly from PyPI via `uvx` — no clone required.
 
 Basic syntax:
 
@@ -60,7 +60,7 @@ claude mcp add --transport stdio --scope user \
   --env WHATSAPP_APP_ID=<app-id> \
   --env WHATSAPP_APP_SECRET=<app-secret> \
   pywa \
-  -- uvx --from git+https://github.com/ianaleck/pywa-mcp-server pywa-mcp-server
+  -- uvx --from pywa-mcp-server pywa-mcp-server
 ```
 
 Scope (`--scope` / `-s`):
@@ -68,12 +68,22 @@ Scope (`--scope` / `-s`):
 - `user` — across all your projects
 - `project` — committed via `.mcp.json`
 
-Verify / inspect / remove:
+Other useful commands:
 
 ```bash
-claude mcp list
-claude mcp get pywa
-claude mcp remove pywa
+claude mcp list                 # list all configured servers
+claude mcp get pywa             # show details + health-check pywa
+claude mcp remove pywa          # remove from config
+claude mcp add-json pywa '<json>'  # add via raw JSON string
+claude mcp add-from-claude-desktop # import servers from Claude Desktop (Mac/WSL)
+claude mcp reset-project-choices   # reset approved/rejected project-scoped servers
+claude mcp serve                   # run Claude Code itself as an MCP server
+```
+
+To run from latest git (unreleased changes) instead of PyPI:
+
+```bash
+... -- uvx --from git+https://github.com/ianaleck/pywa-mcp-server pywa-mcp-server
 ```
 
 #### Option B — `.mcp.json` in the project
@@ -92,7 +102,7 @@ Any MCP client that supports stdio works. Add:
   "mcpServers": {
     "pywa": {
       "command": "uvx",
-      "args": ["--from", "git+https://github.com/ianaleck/pywa-mcp-server", "pywa-mcp-server"],
+      "args": ["--from", "pywa-mcp-server", "pywa-mcp-server"],
       "env": {
         "WHATSAPP_PHONE_ID": "...",
         "WHATSAPP_TOKEN": "...",
